@@ -1,0 +1,39 @@
+$size: 100px;
+$days: (mon, tue, wed, thu, fri, sat, sun);
+
+.calendar {
+  font-family: Arial, sans-serif;
+  margin: 50px auto;
+  display: grid;
+  grid-template: repeat(6, $size) / repeat(7, $size);
+  grid-gap: 1px;
+  justify-content: center;
+  line-height: $size;
+  font-size: 30px;
+}
+
+@for $numberOfDays from 28 through 31 {
+  @for $i from 1 through $numberOfDays {
+    .calendar-#{$numberOfDays} .day:nth-child(#{$i}):after {
+      content: '#{$i}';
+      display: flex;
+      justify-content: center;
+    }
+    .calendar-#{$numberOfDays} .day:nth-child(#{$i})  {
+      background: #eee;
+      border: 1px solid black;
+      transition: all 0.5s;
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-20px);
+        background: pink;
+      }
+    }
+  }
+}
+
+@each $dayOfWeek in $days {
+  .calendar-#{$dayOfWeek} .day:first-child {
+    grid-column-start: index($days, $dayOfWeek);
+  }
+}
