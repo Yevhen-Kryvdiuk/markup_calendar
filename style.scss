@@ -12,19 +12,25 @@ $days: (mon, tue, wed, thu, fri, sat, sun);
   font-size: 30px;
 }
 
+.day {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
 @for $numberOfDays from 28 through 31 {
   @for $i from 1 through $numberOfDays {
-    .calendar-#{$numberOfDays} .day:nth-child(#{$i}):after {
+    .calendar-#{$numberOfDays} >
+    .day:nth-child(#{$i}):after {
       content: '#{$i}';
-      display: flex;
-      justify-content: center;
+
     }
-    .calendar-#{$numberOfDays} .day:nth-child(#{$i})  {
+    .calendar-#{$numberOfDays} >
+    .day:nth-child(#{$i})  {
       background: #eee;
       border: 1px solid black;
       transition: all 0.5s;
       &:hover {
-        cursor: pointer;
         transform: translateY(-20px);
         background: pink;
       }
